@@ -1,5 +1,3 @@
-// A login component where user can type email and password and alerts the user with a message when submitted
-
 import { useState } from "react";
 
 export default function LoginComponent() {

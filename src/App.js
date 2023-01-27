@@ -2,14 +2,12 @@ import { useEffect, useState } from "react";
 import "./styles.css";
 
 export default function App() {
-  // state variable with initial values and setters
   const [todos, setTodos] = useState([]);
   const [todoTitle, setTodoTitle] = useState("");
   const [completedCnt, setCompletedCnt] = useState(0);
   const [pendingCnt, setPendingCnt] = useState(0);
 
-  // todos is passed in dependency array
-  // as soon as toodos are changed we recompute the value again
+
   useEffect(() => {
     const completedTodos = todos.filter((todo) => todo.done === true);
     const pendingTodos = todos.filter((todo) => todo.done === false);
@@ -17,13 +15,13 @@ export default function App() {
     setPendingCnt(pendingTodos.length);
   }, [todos]);
 
-  // changes the title and add it's to the state variable
+
   const onTitleChange = (e) => {
     let inputVal = e.target.value;
     setTodoTitle(inputVal);
   };
 
-  // button that adds a todo with the typed text
+
   const onAddTodo = () => {
     const todoItem = {
       id: todos.length + 1,
@@ -34,7 +32,7 @@ export default function App() {
     setTodoTitle("");
   };
 
-  // on click function that marks a todo when clicked on checkbox
+
   const onCheckBoxClick = (todoId) => {
     const newTodos = [];
     for (let i = 0; i < todos.length; i++) {
@@ -53,16 +51,13 @@ export default function App() {
     setTodos(newTodos);
   };
 
-  // on click function that deletes a todo when clicked on delete icon
   const onDeleteIconClick = (todoId) => {
     const newTodos = [];
     for (let i = 0; i < todos.length; i++) {
       let existing_todo = todos[i];
       if (todos[i].id === todoId) {
-        // Skip copy of this todo
         continue;
       } else {
-        // copy the other todo
         newTodos.push({
           ...existing_todo
         });
